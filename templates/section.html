@@ -1,0 +1,86 @@
+{% extends "index.html" %}
+
+{% block content %}
+    {% set index = get_section(path="_index.md") %}
+    
+    {# Hero Section - Docsify-style coverpage #}
+    <div class="hero">
+        <img src="{{ get_url(path='logo.svg') | safe }}" alt="envcheck logo" class="hero__logo">
+        <h1 class="hero__title">envcheck</h1>
+        <p class="hero__tagline">⚡️ Fast .env linter with DevSecOps superpowers. Written in Rust 🦀</p>
+        <div class="hero__badges">
+            <a href="https://crates.io/crates/envcheck"><img src="https://img.shields.io/crates/v/envcheck.svg" alt="Crates.io"></a>
+            <a href="https://github.com/envcheck/envcheck/actions"><img src="https://github.com/envcheck/envcheck/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+            <a href="https://www.npmjs.com/package/envcheck"><img src="https://img.shields.io/npm/v/envcheck" alt="npm"></a>
+        </div>
+        <div class="hero__actions">
+            <a href="{{ get_url(path='introduction/installation/') | safe }}" class="btn btn--primary">Get Started</a>
+            <a href="https://github.com/envcheck/envcheck" class="btn btn--secondary">GitHub</a>
+        </div>
+    </div>
+
+    {# Features Grid #}
+    <div class="features">
+        <div class="feature">
+            <span class="feature__icon">🔍</span>
+            <h3>Lint</h3>
+            <p>Detect duplicate keys, invalid syntax, empty values, trailing whitespace</p>
+        </div>
+        <div class="feature">
+            <span class="feature__icon">🔄</span>
+            <h3>Compare</h3>
+            <p>Find missing keys across .env.example, .env.local, .env.prod</p>
+        </div>
+        <div class="feature">
+            <span class="feature__icon">☸️</span>
+            <h3>K8s Sync</h3>
+            <p>Verify Kubernetes Secrets/ConfigMaps match your .env</p>
+        </div>
+        <div class="feature">
+            <span class="feature__icon">🛠️</span>
+            <h3>Auto-Fix</h3>
+            <p>Fix issues with --commit and --pr flags for CI</p>
+        </div>
+        <div class="feature">
+            <span class="feature__icon">🖥️</span>
+            <h3>TUI</h3>
+            <p>Interactive terminal UI for comparing and merging files</p>
+        </div>
+        <div class="feature">
+            <span class="feature__icon">📊</span>
+            <h3>SARIF</h3>
+            <p>GitHub Security tab integration with SARIF output</p>
+        </div>
+    </div>
+
+    {# Quick Install #}
+    <div class="quick-install">
+        <h2>⚡ Quick Install</h2>
+        <div class="install-tabs">
+            <pre><code class="language-bash"># Cargo (recommended)
+cargo install envcheck
+
+# npm
+npm install -g envcheck
+# or use without installing
+npx envcheck lint .env
+
+# Homebrew
+brew tap envcheck/tap && brew install envcheck</code></pre>
+        </div>
+    </div>
+
+    {# Main content from _index.md #}
+    <div class="index-content">
+        {{ index.content | safe }}
+    </div>
+{% endblock content %}
+
+{% block prev_link %}{% endblock prev_link %}
+{% block next_link %}
+    {% set index = get_section(path="_index.md") %}
+    {% if index.subsections %}
+        {% set first_section = get_section(path=index.subsections | first) %}
+        <a class="next" href="{{ first_section.permalink | safe }}">></a>
+    {% endif %}
+{% endblock next_link %}

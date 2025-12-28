@@ -1,0 +1,62 @@
+# envcheck Documentation Site Configuration
+
+base_url = "https://envcheck.github.io"
+title = "envcheck"
+description = "⚡️ Fast .env linter with DevSecOps superpowers - K8s, Terraform, Ansible, Helm, ArgoCD integration. Written in Rust 🦀"
+default_language = "en"
+theme = "book"
+
+# Syntax highlighting - inline styles
+[markdown]
+highlight_code = true
+highlight_theme = "inspired-github"
+render_emoji = true
+
+# Search functionality
+build_search_index = true
+
+[link_checker]
+skip_prefixes = [
+    "http://[2001:db8::]/"
+]
+
+[slugify]
+paths = "on"
+taxonomies = "on"
+anchors = "on"
+
+# Book theme configuration
+[extra]
+# Primary brand color (Rust orange)
+book_primary_color = "#f74c00"
+book_secondary_color = "#2d3748"
+
+# Navigation
+book_number_chapters = false
+book_only_current_section_pages = true
+
+# Search
+book_search_enabled = true
+
+# Menu items (shown in top nav)
+book_menu_title = "envcheck"
+
+# Repository link for "Edit this page" buttons
+book_repo_url = "https://github.com/envcheck/envcheck.github.io"
+
+# Footer
+book_footer_copyright = "Copyright &copy; 2025 envcheck contributors"
+book_footer_license = "MIT License"
+book_footer_license_url = "https://github.com/envcheck/envcheck/blob/main/LICENSE"
+
+# Custom CSS
+custom_css = ["custom.css", "syntax.css"]
+
+# Social / SEO
+og_image = "/cover.png"
+twitter_handle = "@envcheck"
+github_url = "https://github.com/envcheck/envcheck"
+
+[extra.book]
+include_all = true
+

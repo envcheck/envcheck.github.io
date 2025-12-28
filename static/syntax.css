@@ -1,0 +1,92 @@
+/* Syntax Highlighting - Base16 Ocean Dark */
+/* For use with Zola highlight_theme = "css" */
+
+pre {
+    background-color: #2b303b;
+    color: #c0c5ce;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+pre code {
+    background: transparent;
+    padding: 0;
+}
+
+/* Token styles */
+.z-comment {
+    color: #65737e;
+    font-style: italic;
+}
+
+.z-string {
+    color: #a3be8c;
+}
+
+.z-number {
+    color: #d08770;
+}
+
+.z-keyword {
+    color: #b48ead;
+}
+
+.z-operator {
+    color: #c0c5ce;
+}
+
+.z-function {
+    color: #8fa1b3;
+}
+
+.z-type {
+    color: #ebcb8b;
+}
+
+.z-variable {
+    color: #bf616a;
+}
+
+.z-constant {
+    color: #d08770;
+}
+
+.z-attribute {
+    color: #8fa1b3;
+}
+
+.z-tag {
+    color: #bf616a;
+}
+
+.z-punctuation {
+    color: #c0c5ce;
+}
+
+.z-text {
+    color: #c0c5ce;
+}
+
+/* YAML specific */
+.z-key {
+    color: #8fa1b3;
+}
+
+.z-value {
+    color: #a3be8c;
+}
+
+/* Bash specific */
+.z-builtin {
+    color: #96b5b4;
+}
+
+.z-command {
+    color: #8fa1b3;
+}
+
+.z-path {
+    color: #a3be8c;
+}

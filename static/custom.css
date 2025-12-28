@@ -1,0 +1,310 @@
+/* envcheck Documentation Theme Overrides */
+/* Based on Zola Book Theme */
+
+:root {
+  --brand-color: #f74c00;
+  /* Rust orange */
+  --brand-dark: #c43d00;
+  --brand-light: #ff6b2c;
+  --text-color: #2d3748;
+  --bg-color: #ffffff;
+  --sidebar-bg: #f7fafc;
+  --border-color: #e2e8f0;
+  --code-bg: #2d3748;
+  --code-color: #f7fafc;
+}
+
+/* Typography */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  color: var(--text-color);
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: 2.5rem;
+  border-bottom: 2px solid var(--brand-color);
+  padding-bottom: 0.3em;
+}
+
+h2 {
+  font-size: 2rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.3em;
+}
+
+/* Links */
+a {
+  color: var(--brand-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--brand-dark);
+  text-decoration: underline;
+}
+
+/* Code blocks - don't override color, let Zola syntax highlighting work */
+pre {
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+code {
+  background: var(--sidebar-bg);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
+  font-size: 0.9em;
+}
+
+pre code {
+  background: transparent;
+  padding: 0;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+th,
+td {
+  border: 1px solid var(--border-color);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+th {
+  background: var(--sidebar-bg);
+  font-weight: 600;
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 4px solid var(--brand-color);
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: #718096;
+  font-style: italic;
+}
+
+/* Severity badges */
+.severity-error {
+  color: #e53e3e;
+  font-weight: 600;
+}
+
+.severity-warning {
+  color: #dd6b20;
+  font-weight: 600;
+}
+
+.severity-info {
+  color: #3182ce;
+  font-weight: 600;
+}
+
+/* Status badges */
+.status-done {
+  color: #38a169;
+}
+
+.status-in-progress {
+  color: #dd6b20;
+}
+
+.status-planned {
+  color: #718096;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none;
+  }
+
+  a {
+    color: var(--text-color);
+  }
+}
+
+/* ================================ */
+/* Hero Section - Docsify-style     */
+/* ================================ */
+.hero {
+  text-align: center;
+  padding: 3rem 1rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 12px;
+  color: #fff;
+}
+
+.hero__logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.hero__title {
+  font-size: 3rem;
+  margin: 0.5rem 0;
+  background: linear-gradient(90deg, #f74c00, #ff8c00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  border-bottom: none;
+}
+
+.hero__tagline {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  margin-bottom: 1.5rem;
+}
+
+.hero__badges {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.hero__badges img {
+  height: 20px;
+}
+
+.hero__actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+}
+
+.btn--primary {
+  background: linear-gradient(90deg, #f74c00, #ff6b00);
+  color: #fff;
+}
+
+.btn--secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Features Grid */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.feature {
+  background: var(--sidebar-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid var(--border-color);
+}
+
+.feature:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.feature__icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.feature h3 {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.feature p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #718096;
+}
+
+/* Quick Install */
+.quick-install {
+  background: #1a1a2e;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.quick-install h2 {
+  color: #fff;
+  margin-top: 0;
+  text-align: center;
+  border-bottom: none;
+}
+
+.quick-install pre {
+  margin: 0;
+  background: #0d1117;
+}
+
+.quick-install code {
+  color: #c9d1d9;
+  background: transparent;
+}
+
+/* Index content separator */
+.index-content {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+}

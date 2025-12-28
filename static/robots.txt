@@ -1,0 +1,6 @@
+# Robots.txt for envcheck.github.io
+
+User-agent: *
+Allow: /
+
+Sitemap: https://envcheck.github.io/sitemap.xml
