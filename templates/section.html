@@ -1,86 +1,98 @@
 {% extends "index.html" %}
 
+{# Inject Hero into the new top-level block #}
+{% block home_hero %}
+{% if current_path == "/" %}
+{# Render Homepage Hero only on root #}
+{# GitHub Ribbon #}
+<a href="https://github.com/envcheck/envcheck" class="github-corner" aria-label="View source on GitHub">
+    <svg width="80" height="80" viewBox="0 0 250 250"
+        style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0; z-index: 100;"
+        aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path
+            d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+            fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path
+            d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+            fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+
+<div class="hero__wrapper">
+    <div class="retro-terminal fullscreen-terminal">
+        <div class="terminal-body scanlines">
+            <div class="hero__logo-container">
+                <img src="{{ get_url(path='images/logo-pixel.png') | safe }}" alt="envcheck pixel logo"
+                    class="hero__logo pixelated">
+            </div>
+
+            <div class="hero__content">
+                <h1 class="hero__title pixel-font">envcheck</h1>
+                <div class="hero__tagline-container">
+                    <p class="hero__tagline terminal-text">> ⚡️ Fast .env linter with DevSecOps superpowers. Written in
+                        Rust 🦀<span class="cursor">_</span></p>
+                </div>
+            </div>
+
+            <div class="hero__badges">
+                <a href="https://crates.io/crates/envcheck"><img
+                        src="https://img.shields.io/crates/v/envcheck.svg?style=for-the-badge&label=crates.io&color=00ff41"
+                        alt="Crates.io"></a>
+                <a href="https://github.com/envcheck/envcheck/actions"><img
+                        src="https://img.shields.io/github/actions/workflow/status/envcheck/envcheck/ci.yml?style=for-the-badge&label=BUILD&color=00ff41"
+                        alt="CI"></a>
+                <a href="https://www.npmjs.com/package/envcheck"><img
+                        src="https://img.shields.io/npm/v/envcheck?style=for-the-badge&label=NPM&color=00ff41"
+                        alt="npm"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="scroll-indicator">
+        <span class="scroll-arrow">v</span>
+    </div>
+</div>
+{% endif %}
+{% endblock home_hero %}
+
 {% block content %}
-    {% set index = get_section(path="_index.md") %}
-    
-    {# Hero Section - Docsify-style coverpage #}
-    <div class="hero">
-        <img src="{{ get_url(path='logo.svg') | safe }}" alt="envcheck logo" class="hero__logo">
-        <h1 class="hero__title">envcheck</h1>
-        <p class="hero__tagline">⚡️ Fast .env linter with DevSecOps superpowers. Written in Rust 🦀</p>
-        <div class="hero__badges">
-            <a href="https://crates.io/crates/envcheck"><img src="https://img.shields.io/crates/v/envcheck.svg" alt="Crates.io"></a>
-            <a href="https://github.com/envcheck/envcheck/actions"><img src="https://github.com/envcheck/envcheck/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
-            <a href="https://www.npmjs.com/package/envcheck"><img src="https://img.shields.io/npm/v/envcheck" alt="npm"></a>
-        </div>
-        <div class="hero__actions">
-            <a href="{{ get_url(path='introduction/installation/') | safe }}" class="btn btn--primary">Get Started</a>
-            <a href="https://github.com/envcheck/envcheck" class="btn btn--secondary">GitHub</a>
-        </div>
+
+{% if current_path == "/" %}
+{# Features Grid (Homepage only) #}
+<div class="features">
+    <div class="feature">
+        <span class="feature__icon">🔍</span>
+        <h3>Lint</h3>
+        <p>Detect duplicate keys, invalid syntax, empty values</p>
     </div>
-
-    {# Features Grid #}
-    <div class="features">
-        <div class="feature">
-            <span class="feature__icon">🔍</span>
-            <h3>Lint</h3>
-            <p>Detect duplicate keys, invalid syntax, empty values, trailing whitespace</p>
-        </div>
-        <div class="feature">
-            <span class="feature__icon">🔄</span>
-            <h3>Compare</h3>
-            <p>Find missing keys across .env.example, .env.local, .env.prod</p>
-        </div>
-        <div class="feature">
-            <span class="feature__icon">☸️</span>
-            <h3>K8s Sync</h3>
-            <p>Verify Kubernetes Secrets/ConfigMaps match your .env</p>
-        </div>
-        <div class="feature">
-            <span class="feature__icon">🛠️</span>
-            <h3>Auto-Fix</h3>
-            <p>Fix issues with --commit and --pr flags for CI</p>
-        </div>
-        <div class="feature">
-            <span class="feature__icon">🖥️</span>
-            <h3>TUI</h3>
-            <p>Interactive terminal UI for comparing and merging files</p>
-        </div>
-        <div class="feature">
-            <span class="feature__icon">📊</span>
-            <h3>SARIF</h3>
-            <p>GitHub Security tab integration with SARIF output</p>
-        </div>
+    <div class="feature">
+        <span class="feature__icon">🔄</span>
+        <h3>Compare</h3>
+        <p>Find missing keys across .env files</p>
     </div>
-
-    {# Quick Install #}
-    <div class="quick-install">
-        <h2>⚡ Quick Install</h2>
-        <div class="install-tabs">
-            <pre><code class="language-bash"># Cargo (recommended)
-cargo install envcheck
-
-# npm
-npm install -g envcheck
-# or use without installing
-npx envcheck lint .env
-
-# Homebrew
-brew tap envcheck/tap && brew install envcheck</code></pre>
-        </div>
+    <div class="feature">
+        <span class="feature__icon">☸️</span>
+        <h3>K8s Sync</h3>
+        <p>Verify Kubernetes Secrets match .env</p>
     </div>
+</div>
+{% endif %}
 
-    {# Main content from _index.md #}
-    <div class="index-content">
-        {{ index.content | safe }}
-    </div>
+{# Main section content #}
+<div class="index-content">
+    {{ section.content | safe }}
+</div>
 {% endblock content %}
 
 {% block prev_link %}{% endblock prev_link %}
 {% block next_link %}
-    {% set index = get_section(path="_index.md") %}
-    {% if index.subsections %}
-        {% set first_section = get_section(path=index.subsections | first) %}
-        <a class="next" href="{{ first_section.permalink | safe }}">></a>
-    {% endif %}
+{% if section.subsections %}
+{% set first_section = get_section(path=section.subsections | first) %}
+{% if first_section.pages %}
+<a class="next" href="{{ first_section.pages[0].permalink | safe }}">></a>
+{% else %}
+<a class="next" href="{{ first_section.permalink | safe }}">></a>
+{% endif %}
+{% endif %}
 {% endblock next_link %}

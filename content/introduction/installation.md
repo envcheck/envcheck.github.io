@@ -3,7 +3,7 @@ title = "Installation"
 weight = 1
 +++
 
-# Installation
+
 
 Install envcheck using any of the following methods:
 

@@ -2,16 +2,115 @@
 /* Based on Zola Book Theme */
 
 :root {
+  /* ========================================= */
+  /* PREMIUM THEME SYSTEM (State of the Art)   */
+  /* ========================================= */
+
+  /* --- Light Theme (Default: Pleasant, Off-White) --- */
+  /* Backgrounds: Warm, sophisticated Stone/creams */
+  --bg-color: #fafaf9;
+  /* Stone 50 - pleasant off-white */
+  --sidebar-bg: #f5f5f4;
+  /* Stone 100 - subtle differentiation */
+  --code-bg: #e7e5e4;
+  /* Stone 200 */
+
+  /* Text: Softened blacks */
+  --text-color: #1c1917;
+  /* Stone 900 */
+  --text-muted: #57534e;
+  /* Stone 500 */
+
+  /* Borders */
+  --border-color: #d6d3d1;
+  /* Stone 300 */
+
+  /* Brand */
   --brand-color: #f74c00;
-  /* Rust orange */
   --brand-dark: #c43d00;
   --brand-light: #ff6b2c;
-  --text-color: #2d3748;
-  --bg-color: #ffffff;
-  --sidebar-bg: #f7fafc;
-  --border-color: #e2e8f0;
-  --code-bg: #2d3748;
-  --code-color: #f7fafc;
+
+  /* Code Syntax (Light) */
+  --code-color: #0c0a09;
+
+  /* Retro Theme Variables (Light Mode Adaptation) */
+  --retro-green: #15803d;
+  /* Darker green for light bg contrast */
+  --retro-bg: #fafaf9;
+  /* Match light theme bg */
+  --retro-text: #1c1917;
+  /* Dark text */
+  --retro-border: #d6d3d1;
+  --terminal-header: #e7e5e4;
+  --logo-filter: invert(1);
+  /* Invert white logo to black/dark */
+}
+
+/* --- Dark Theme (Media Query) --- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Backgrounds: Deep, rich Zincs (Not pure black) */
+    --bg-color: #09090b;
+    /* Zinc 950 - Deep rich dark */
+    --sidebar-bg: #18181b;
+    /* Zinc 900 */
+    --code-bg: #27272a;
+    /* Zinc 800 */
+
+    /* Text: High legibility off-whites */
+    --text-color: #f4f4f5;
+    /* Zinc 100 */
+    --text-muted: #a1a1aa;
+    /* Zinc 400 */
+
+    /* Borders: Subtle dark grey */
+    --border-color: #27272a;
+    /* Zinc 800 */
+
+    --code-color: #e4e4e7;
+
+    /* Retro Theme Variables (Dark Mode) */
+    --retro-green: #00ff41;
+    --retro-bg: #0d0d0d;
+    --retro-text: #00ff41;
+    --retro-border: #333;
+    --terminal-header: #333;
+    --logo-filter: none;
+  }
+}
+
+/* Allow manual override if the theme adds a class (common in Zola themes) */
+html.dark {
+  --bg-color: #09090b;
+  --sidebar-bg: #18181b;
+  --code-bg: #27272a;
+  --text-color: #f4f4f5;
+  --text-muted: #a1a1aa;
+  --border-color: #27272a;
+  --code-color: #e4e4e7;
+
+  --retro-green: #00ff41;
+  --retro-bg: #0d0d0d;
+  --retro-text: #00ff41;
+  --retro-border: #333;
+  --terminal-header: #333;
+  --logo-filter: none;
+}
+
+html.light {
+  --bg-color: #fafaf9;
+  --sidebar-bg: #f5f5f4;
+  --code-bg: #e7e5e4;
+  --text-color: #1c1917;
+  --text-muted: #57534e;
+  --border-color: #d6d3d1;
+
+  --retro-green: #15803d;
+  --retro-bg: #fafaf9;
+  --retro-text: #1c1917;
+  --retro-border: #d6d3d1;
+  --terminal-header: #e7e5e4;
+  --logo-filter: invert(1);
 }
 
 /* Typography */
@@ -21,6 +120,19 @@ body {
   line-height: 1.6;
 }
 
+
+
+/* Ensure all text elements inherit the theme color */
+p,
+li,
+span,
+div,
+blockquote,
+td,
+th {
+  color: var(--text-color);
+}
+
 /* Headings */
 h1,
 h2,
@@ -28,214 +140,278 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-color);
-  margin-top: 1.5em;
-  margin-bottom: 0.5em;
+  /* Explicitly enforce theme color */
+  letter-spacing: -0.025em;
+  margin-top: 2em;
+}
+
+/* Specific Dark Mode Overrides for Syntax Highlighting */
+@media (prefers-color-scheme: dark) {
+
+  /* Force Code Blocks to be Dark */
+  code,
+  pre,
+  .z-code {
+    color: #e4e4e7 !important;
+    /* Zinc 200 */
+    background-color: #27272a !important;
+    /* Zinc 800 */
+  }
+
+  /* Fix specific Zola/highlight.js classes if they exist */
+  pre[style],
+  code[style] {
+    background-color: #27272a !important;
+    color: #e4e4e7 !important;
+  }
+
+  /* Sidebar Links - High Contrast */
+  .menu a {
+    color: #a1a1aa !important;
+    /* Zinc 400 - Readable Grey */
+  }
+
+  .menu a:hover,
+  .menu li.active>a {
+    color: var(--brand-light) !important;
+    background: rgba(255, 255, 255, 0.05);
+    /* Subtle highlight */
+  }
+
+  /* Inline Code specific tweak for dark mode */
+  :not(pre)>code {
+    background-color: #3f3f46 !important;
+    /* Zinc 700 - slightly lighter than block */
+  }
 }
 
 h1 {
-  font-size: 2.5rem;
-  border-bottom: 2px solid var(--brand-color);
-  padding-bottom: 0.3em;
+  font-size: 2.25rem;
+  border-bottom: none;
+  /* Cleaner look */
+  margin-bottom: 1rem;
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 1.75rem;
   border-bottom: 1px solid var(--border-color);
-  padding-bottom: 0.3em;
+  padding-bottom: 0.5rem;
 }
 
 /* Links */
 a {
-  color: var(--brand-color);
+  color: var(--brand-light);
+  /* Use lighter brand color for better contrast on dark */
+  font-weight: 500;
   text-decoration: none;
-  transition: color 0.2s ease;
+}
+
+html.light a {
+  color: var(--brand-color);
+  /* Darker orange for light mode */
 }
 
 a:hover {
-  color: var(--brand-dark);
   text-decoration: underline;
+  transition: color 0.2s ease;
 }
 
-/* Code blocks - don't override color, let Zola syntax highlighting work */
-pre {
-  padding: 1rem;
-  border-radius: 8px;
-  overflow-x: auto;
-  margin: 1rem 0;
-}
-
-code {
+/* Sidebar Styling */
+.menu {
   background: var(--sidebar-bg);
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
-  font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
-  font-size: 0.9em;
+  border-right: 1px solid var(--border-color);
 }
 
-pre code {
+.menu a {
+  color: var(--text-muted);
+  /* Muted by default */
+  transition: all 0.2s ease;
+}
+
+.menu a:hover,
+.menu li.active>a {
+  color: var(--brand-color);
   background: transparent;
-  padding: 0;
-}
-
-/* Tables */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1rem 0;
-}
-
-th,
-td {
-  border: 1px solid var(--border-color);
-  padding: 0.75rem;
-  text-align: left;
-}
-
-th {
-  background: var(--sidebar-bg);
-  font-weight: 600;
-}
-
-/* Blockquotes */
-blockquote {
-  border-left: 4px solid var(--brand-color);
-  padding-left: 1rem;
-  margin: 1rem 0;
-  color: #718096;
-  font-style: italic;
-}
-
-/* Severity badges */
-.severity-error {
-  color: #e53e3e;
-  font-weight: 600;
-}
-
-.severity-warning {
-  color: #dd6b20;
-  font-weight: 600;
-}
-
-.severity-info {
-  color: #3182ce;
-  font-weight: 600;
-}
-
-/* Status badges */
-.status-done {
-  color: #38a169;
-}
-
-.status-in-progress {
-  color: #dd6b20;
-}
-
-.status-planned {
-  color: #718096;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2rem;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-  }
-}
-
-/* Print styles */
-@media print {
-  .no-print {
-    display: none;
-  }
-
-  a {
-    color: var(--text-color);
-  }
+  /* Remove blocky backgrounds if present */
+  transform: translateX(4px);
+  /* Subtle shift */
 }
 
 /* ================================ */
-/* Hero Section - Docsify-style     */
+/* Hero Section - Retro Terminal    */
 /* ================================ */
-.hero {
+.hero.retro-terminal {
   text-align: center;
-  padding: 3rem 1rem;
-  margin-bottom: 2rem;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-  border-radius: 12px;
-  color: #fff;
+  padding: 0;
+  margin: 2rem auto;
+  background: var(--retro-bg);
+  border: 1px solid var(--retro-border);
+  border-radius: 6px;
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
+  max-width: 900px;
+  overflow: hidden;
+  font-family: 'VT323', monospace;
+  transition: all 0.3s ease;
 }
 
-.hero__logo {
-  width: 120px;
-  height: auto;
+.terminal-header {
+  background: var(--terminal-header);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--retro-border);
+}
+
+.terminal-button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.terminal-button.red {
+  background: #ff5f56;
+}
+
+.terminal-button.yellow {
+  background: #ffbd2e;
+}
+
+.terminal-button.green {
+  background: #27c93f;
+}
+
+.terminal-title {
+  margin-left: 12px;
+  color: #aaa;
+  font-size: 14px;
+  font-family: monospace;
+}
+
+.terminal-body {
+  padding: 3rem 1rem;
+  position: relative;
+  background-color: var(--retro-bg);
+  /* Scanline subtle background grid */
+  background-image: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background-size: 100% 2px, 3px 100%;
+}
+
+.hero__logo-container {
   margin-bottom: 1rem;
 }
 
-.hero__title {
-  font-size: 3rem;
-  margin: 0.5rem 0;
-  background: linear-gradient(90deg, #f74c00, #ff8c00);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  border-bottom: none;
+.hero__logo.pixelated {
+  width: 120px;
+  height: auto;
+  image-rendering: pixelated;
+  /* Apply filter for icon (inversion) + glow */
+  filter: var(--logo-filter) drop-shadow(0 0 8px rgba(0, 255, 65, 0.6));
+  transition: filter 0.3s ease;
 }
 
-.hero__tagline {
-  font-size: 1.25rem;
-  opacity: 0.9;
-  margin-bottom: 1.5rem;
+.hero__title.pixel-font {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 3rem;
+  margin: 0.5rem 0 1.5rem 0;
+  color: var(--retro-green);
+  text-shadow: 4px 4px 0px #003b00;
+  line-height: 1.4;
+  border: none;
+}
+
+.hero__tagline-container {
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+}
+
+.hero__tagline.terminal-text {
+  font-family: 'VT323', monospace;
+  font-size: 1.5rem;
+  color: var(--retro-green);
+  text-align: left;
+  display: inline-block;
+  opacity: 1;
+  background: transparent;
+}
+
+/* Blinking cursor */
+.cursor {
+  display: inline-block;
+  width: 10px;
+  background: var(--retro-green);
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 .hero__badges {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 1rem;
   flex-wrap: wrap;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .hero__badges img {
-  height: 20px;
+  height: 28px;
 }
 
 .hero__actions {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.5rem;
   flex-wrap: wrap;
 }
 
-/* Buttons */
-.btn {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: transform 0.2s, box-shadow 0.2s;
+/* Pixel Buttons */
+.btn.pixel-btn {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  padding: 1rem 1.5rem;
+  border-radius: 0;
+  text-transform: uppercase;
+  border: 4px solid var(--retro-green);
+  box-shadow: 6px 6px 0px #003b00;
+  transition: all 0.1s linear;
 }
 
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  text-decoration: none;
+.btn--primary.pixel-btn {
+  background: var(--retro-green);
+  color: var(--retro-bg);
+  border-color: var(--retro-green);
 }
 
-.btn--primary {
-  background: linear-gradient(90deg, #f74c00, #ff6b00);
-  color: #fff;
+.btn--primary.pixel-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0px #003b00;
 }
 
-.btn--secondary {
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+.btn--secondary.pixel-btn {
+  background: transparent;
+  color: var(--retro-green);
+  border-color: var(--retro-green);
+}
+
+.btn--secondary.pixel-btn:hover {
+  background: rgba(0, 255, 65, 0.1);
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0px #003b00;
 }
 
 /* Features Grid */
@@ -274,7 +450,7 @@ blockquote {
 .feature p {
   margin: 0;
   font-size: 0.9rem;
-  color: #718096;
+  color: var(--text-muted);
 }
 
 /* Quick Install */
@@ -297,14 +473,178 @@ blockquote {
   background: #0d1117;
 }
 
-.quick-install code {
-  color: #c9d1d9;
-  background: transparent;
+/* Code Blocks */
+pre {
+  background-color: var(--code-bg) !important;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
 }
 
-/* Index content separator */
-.index-content {
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--border-color);
+code {
+  background-color: var(--code-bg);
+  color: var(--text-color);
+  border-radius: 4px;
+  font-size: 0.85em;
+  padding: 0.2em 0.4em;
+  font-family: 'SF Mono', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+}
+
+
+/* ================================ */
+/* Hero Wrapper (Top Block)         */
+/* ================================ */
+.hero__wrapper {
+  width: 100%;
+  height: 100vh;
+  /* Fullscreen initial view */
+  background-color: var(--retro-bg);
+  /* Fullscreen background texture */
+  background-image:
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background-size: 100% 2px, 3px 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-bottom: 2px solid var(--retro-green);
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 20px;
+  color: var(--retro-green);
+  font-family: 'Press Start 2P', cursive;
+  animation: bounce 2s infinite;
+  font-size: 0.8rem;
+}
+
+@keyframes bounce {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-10px);
+  }
+
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Ensure the doc-layout (menu + page) flows properly */
+.doc-layout {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--bg-color);
+  /* Ensure opacity over any fixed bg */
+}
+
+/* Adjust Sidebar to be sticky, not fixed covering the hero */
+.menu {
+  /* In Zola Book Theme sidebar is often fixed. We need to check or enforce sticky */
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  min-width: 250px;
+  /* Guessing default width */
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+}
+
+.page {
+  flex: 1;
+  padding: 0;
+  max-width: 100%;
+  background-color: var(--bg-color);
+  /* Ensure theme carries over */
+}
+
+.book-content {
+  margin: 3rem auto;
+  max-width: 960px;
+  padding: 0 2rem;
+}
+
+/* Reuse fullscreen terminal styles */
+.fullscreen-terminal {
+  width: 100%;
+  max-width: 900px;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  text-align: center;
+}
+
+.fullscreen-terminal .terminal-body {
+  background: transparent;
+  padding: 0;
+  background-image: none;
+}
+
+/* Adjust sizes for fullscreen impact */
+.hero__logo {
+  width: 160px;
+  margin-bottom: 1.5rem;
+}
+
+.hero__title {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero__tagline-container {
+  max-width: 800px;
+  margin: 0 auto 2rem auto;
+  text-align: center;
+}
+
+.hero__tagline {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  display: inline-block;
+}
+
+/* GitHub Corner Animation */
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
+}
+
+@keyframes octocat-wave {
+
+  0%,
+  100% {
+    transform: rotate(0)
+  }
+
+  20%,
+  60% {
+    transform: rotate(-25deg)
+  }
+
+  40%,
+  80% {
+    transform: rotate(10deg)
+  }
+}
+
+@media (max-width:500px) {
+  .github-corner:hover .octo-arm {
+    animation: none
+  }
+
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out
+  }
 }
