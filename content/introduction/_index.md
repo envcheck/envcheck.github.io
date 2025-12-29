@@ -24,7 +24,7 @@ Get up and running in seconds:
 
 ```bash
 # Install via npm
-npx envcheck@latest init
+npx @envcheck/cli@latest init
 
 # Or via cargo
 cargo install envcheck
