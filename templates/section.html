@@ -60,21 +60,42 @@
 
 {% if current_path == "/" %}
 {# Features Grid (Homepage only) #}
-<div class="features">
-    <div class="feature">
-        <span class="feature__icon">🔍</span>
-        <h3>Lint</h3>
-        <p>Detect duplicate keys, invalid syntax, empty values</p>
+<div class="features-grid">
+    <div class="feature-card">
+        <div class="icon-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-zap">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+        </div>
+        <h3>Lint & Fix</h3>
+        <p>Instantly detect and auto-fix keys, syntax, and formatting issues.</p>
     </div>
-    <div class="feature">
-        <span class="feature__icon">🔄</span>
-        <h3>Compare</h3>
-        <p>Find missing keys across .env files</p>
+    <div class="feature-card">
+        <div class="icon-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-git-pull-request">
+                <circle cx="18" cy="18" r="3"></circle>
+                <circle cx="6" cy="6" r="3"></circle>
+                <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+                <line x1="6" y1="9" x2="6" y2="21"></line>
+            </svg>
+        </div>
+        <h3>Compare & Sync</h3>
+        <p>Ensure environment parity across teams and production stages.</p>
     </div>
-    <div class="feature">
-        <span class="feature__icon">☸️</span>
-        <h3>K8s Sync</h3>
-        <p>Verify Kubernetes Secrets match .env</p>
+    <div class="feature-card">
+        <div class="icon-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-shield">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+        </div>
+        <h3>DevSecOps</h3>
+        <p>Shift left with Kubernetes secrets validation and CI/CD guards.</p>
     </div>
 </div>
 {% endif %}

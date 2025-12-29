@@ -414,43 +414,95 @@ a:hover {
   box-shadow: 4px 4px 0px #003b00;
 }
 
-/* Features Grid */
-.features {
+/* Premium Features Grid */
+.features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  margin: 2rem 0;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 4rem 0;
 }
 
-.feature {
+.feature-card {
   background: var(--sidebar-bg);
-  padding: 1.5rem;
-  border-radius: 8px;
-  text-align: center;
-  transition: transform 0.2s, box-shadow 0.2s;
+  padding: 2rem;
+  border-radius: 12px;
   border: 1px solid var(--border-color);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  /* Subtle light mode shadow */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
 }
 
-.feature:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-color: var(--brand-color);
 }
 
-.feature__icon {
-  font-size: 2.5rem;
-  display: block;
-  margin-bottom: 0.5rem;
+/* Icon Styling */
+.icon-wrapper {
+  width: 48px;
+  height: 48px;
+  background: rgba(247, 76, 0, 0.1);
+  /* Brand tint */
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: var(--brand-color);
+  transition: all 0.3s ease;
 }
 
-.feature h3 {
-  margin: 0.5rem 0;
-  font-size: 1.1rem;
+.feature-card:hover .icon-wrapper {
+  background: var(--brand-color);
+  color: white;
+  transform: scale(1.1) rotate(-3deg);
 }
 
-.feature p {
+.feature-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.feature-card p {
   margin: 0;
-  font-size: 0.9rem;
   color: var(--text-muted);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Dark Mode Overrides for Cards */
+@media (prefers-color-scheme: dark) {
+  .feature-card {
+    background: #18181b;
+    /* Zinc 900 */
+    border-color: #27272a;
+    /* Zinc 800 */
+    box-shadow: none;
+    /* No shadow in dark mode initially */
+  }
+
+  .feature-card:hover {
+    background: #27272a;
+    /* Zinc 800 highlight */
+    border-color: var(--brand-light);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  }
+
+  .icon-wrapper {
+    background: rgba(255, 107, 44, 0.15);
+    /* Slightly brighter tint */
+    color: var(--brand-light);
+  }
+
+  .feature-card:hover .icon-wrapper {
+    background: var(--brand-light);
+    color: #09090b;
+  }
 }
 
 /* Quick Install */
